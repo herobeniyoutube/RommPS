@@ -102,7 +102,7 @@ Note: RommPS relies on your emulator **NOT** being sandboxed. Some emulators req
 | [RetroArch](https://github.com/mihawk-99/PS5_RetroArch) | NES, Famicom Disk System, SNES, Game Boy, Game Boy Color, Game Boy Advance, Genesis/Mega Drive, Master System, Game Gear, Sega CD, SG-1000, arcade (FinalBurn Neo), PS2 (LRPS2), PSP (PPSSPP), GameCube and Wii (Dolphin) | Full Support | Full Support | - |
 | [PSXS5](https://github.com/SynoPiia/PSXS5) | PS1 | Full Support | One memory card per game, and states | States work with RomM's web player (PCSX-ReARMed or Beetle, whichever PSXS5 is set to) |
 | [SwanStationPS5](https://github.com/darkxex/SwanStationPS5) | PS1 | Full Support | One memory card per game, and states | Plays PSXS5's games, keeps its own saves in `/data/SwanStationPS5`. Its states only load in SwanStationPS5 |
-| [PS5SX2](https://github.com/Swordpdf/PS5SX2) | PS2 | Full Support | Its two shared memory cards, backed up to RomM (5.3 or newer) | - |
+| [PS5SX2](https://github.com/Swordpdf/PS5SX2) | PS2 | Full Support | Its two shared memory cards, backed up to RomM (5.3 or newer); or each game's saves on them, synced on their own as RomM's other clients keep them | Per game works with file or folder cards; a folder card is best |
 | [PS5N64](https://github.com/Globaleliteee/PS5N64) | N64 | Full Support | Full Support | - |
 | [PS5NES](https://github.com/Globaleliteee/PS5NES) | NES | Untested | Untested | Preset uses `/data/PS5NES/games` and `/data/PS5NES/saves`. GH page gone |
 | [Porpoise](https://github.com/elripalda/Porpoise-Dolphin-Emulator-for-PS5) | Wii/GameCube | Full Support | N/A | Couldn't exit sandbox w/o crash. [Issue](https://github.com/elripalda/Porpoise-Dolphin-Emulator-for-PS5/issues/18) reported. Downloading games should work if the emulator is actually working for you.|
@@ -134,6 +134,7 @@ I've included direct support for most of the emulators that are out right now, e
 ## Building
 
 ```sh
+git submodule update --init third_party/sigil && git -C third_party/sigil submodule update --init third_party/tiny-AES-c   # once, after cloning
 make host tools       # macOS or Linux build for development, plus tools/release-sign
 tools/ps5-build.sh    # PS5 build in Docker, output in build/ps5/
 tools/ps4-build.sh    # PS4 payload in Docker, output in build/ps4/
@@ -154,4 +155,4 @@ If buying isn't **owning**, then piracy **isn't** stealing. 🖕
 
 ## License
 
-GPL-3.0. Parts of the console code are adapted from [ftpsrv](https://github.com/ps5-payload-dev/ftpsrv) and [websrv](https://github.com/ps5-payload-dev/websrv) by John Törnblom. [cJSON](https://github.com/DaveGamble/cJSON) and [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) are MIT licensed. [Monocypher](https://monocypher.org) is CC0 or BSD-2-Clause.
+GPL-3.0. Parts of the console code are adapted from [ftpsrv](https://github.com/ps5-payload-dev/ftpsrv) and [websrv](https://github.com/ps5-payload-dev/websrv) by John Törnblom. [cJSON](https://github.com/DaveGamble/cJSON) and [qrcode-generator](https://github.com/kazuhikoarase/qrcode-generator) are MIT licensed. [Monocypher](https://monocypher.org) is CC0 or BSD-2-Clause. [argosy-sigil](https://github.com/rommapp/argosy-sigil) (the `third_party/sigil` submodule, of which only its save sync is built) is MPL-2.0, and its [tiny-AES-c](https://github.com/kokke/tiny-AES-c) is Unlicense.
